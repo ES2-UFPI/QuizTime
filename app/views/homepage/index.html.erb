@@ -1,6 +1,5 @@
 <h1>Homepage#index</h1>
 <p>Find me in app/views/homepage/index.html.erb</p>
-
 <% if user_signed_in? %>
   Logado como: <strong><%= current_user.email %></strong>.
   <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
@@ -9,3 +8,4 @@
   <%= link_to "Registrar-se", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
+
