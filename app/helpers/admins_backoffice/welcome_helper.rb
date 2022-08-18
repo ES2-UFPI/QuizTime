@@ -1,2 +1,0 @@
-module AdminsBackoffice::WelcomeHelper
-end

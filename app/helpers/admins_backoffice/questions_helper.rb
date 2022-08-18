@@ -1,3 +1,0 @@
-module AdminsBackoffice::QuestionsHelper
-    
-end
