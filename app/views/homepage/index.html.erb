@@ -1,5 +1,10 @@
-<h1>Homepage#index</h1>
-<p>Find me in app/views/homepage/index.html.erb</p>
+<h1>Bem vindo ao QuizTime</h1>
+
+<ul>
+  <li><%= link_to "Professor", professors_path %></li>
+  <li><%= link_to "Aluno", alunos_path%></li>
+</ul>
+
 
 <% if user_signed_in? %>
   Logado como: <strong><%= current_user.email %></strong>.
