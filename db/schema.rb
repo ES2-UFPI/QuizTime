@@ -10,22 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_22_224319) do
+ActiveRecord::Schema.define(version: 2022_08_27_223253) do
 
-  create_table "alunos", force: :cascade do |t|
-    t.string "nome"
-    t.string "cpf"
-    t.string "matricula"
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "professors", force: :cascade do |t|
-    t.string "nome"
-    t.string "graduacao"
-    t.string "matricula"
+  create_table "answers", force: :cascade do |t|
+    t.text "description", null: false
+    t.boolean "correct", default: false
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "description", null: false
+    t.integer "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_questions_on_subject_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "questions_count"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,6 +56,8 @@ ActiveRecord::Schema.define(version: 2022_08_22_224319) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
