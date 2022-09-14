@@ -14,29 +14,34 @@
             <div class="panel-heading">                
                 <h3 class="panel-title">
                     <span class="label label-info" style="margin-right: 10px">
-                        <%=link_to "#{question.subject.description} (#{question.subject.questions_count})", site_search_subject_path(question.subject_id, question.subject.description), style:"color:white" %>
+                        <%="#{question.subject.description}"%>
                     </span>  
                     <%= question.description %>               
                 </h3>
                 
             </div>
-            <div class="panel-body">
-                <ul>
-                    <% question.answers.each do |answer| %>                       
+            <% if user_signed_in? %>
+                <div class="panel-body">
+                    <ul>
+                        <% question.answers.each do |answer| %>                       
+                            <li style="list-style:none;">
+                                <div class="radio">
+                                    <label>
+                                        <%= radio_button_tag 'answer_id', answer.id %>
+                                        <%=answer.description%>
+                                    <label>
+                                </div>
+                            </li>
+                        <% end %>
+                        
                         <li style="list-style:none;">
-                            <div class="radio">
-                                <label>
-                                    <%= radio_button_tag 'answer_id', answer.id %>
-                                    <%=answer.description%>
-                                <label>
-                            </div>
+                            <%= form.submit "Responder", class:"btn btn-default", id: "submit_#{question.id}" %>
                         </li>
-                    <% end %>
-                    <li style="list-style:none;">
-                        <%= form.submit "Responder", class:"btn btn-default", id: "submit_#{question.id}" %>
-                    </li>
-                </ul>      
-            </div>
+                        
+                    </ul>      
+                </div>
+            <% end %>
+            
         </div>
     <% end %>
 <% end %>
