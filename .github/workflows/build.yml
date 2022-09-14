@@ -1,0 +1,41 @@
+name: Build
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - name: Build
+        env:
+          PG_DATABASE: postgres
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: password
+          RAILS_ENV: test
+          WITH_COVERAGE: true
+          DISABLE_SPRING: 1          
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler:1.17.3
+          bundle install --jobs 4 --retry 3
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+          
