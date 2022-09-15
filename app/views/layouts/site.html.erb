@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>QuizTime</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application'%>
+    <%= stylesheet_link_tag    'site'%>
+    
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>            
+            <%= link_to 'Quiz Time' , '/', class:"navbar-brand"%>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"></ul>
+            <%= form_with(url: site_search_path, local:true, class:"navbar-form navbar-left", method: :get) do |form|  %>            
+              <div class="form-group">               
+                <%= form.text_field :term, class:"form-control", placeholder:"Digite algo..."%>
+              </div>
+              <button type="submit" class="btn btn-default">Pesquisar</button>
+            <% end %>
+            <ul class="nav navbar-nav navbar-right">
+
+              <% unless user_signed_in? %>
+                <li><%= link_to 'Entrar como Aluno', new_user_session_path, style:"color:Black" %></li>             
+                <li><%= link_to 'Entrar como Professor', admins_backoffice_welcome_index_path, style:"color:Black" %></li>              
+                <li><%= link_to 'Cadastro Aluno', new_user_registration_path, style:"color:Black" %></li>
+
+              
+
+              <% else %> 
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Simulados <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "Acionamentos e Controles elétricos", site_search_subject_path(1, "Acionamentos e controles elétricos"), style:"color:Black" %></li>
+                    <li><%= link_to "Administração de Recursos Materiais", site_search_subject_path(2, "Administração de Recursos Materiais"), style:"color:Black" %></li>  
+                    <li><%= link_to "Administração Financeira e Orçamentária", site_search_subject_path(3, "Administração Financeira e Orçamentária"), style:"color:Black" %></li>
+                    <li><%= link_to "Administração Geral", site_search_subject_path(4, "Administração Geral"), style:"color:Black" %></li>
+                    <li><%= link_to "Administração Pública", site_search_subject_path(5, "Administração Pública"), style:"color:Black" %></li>
+                    <li><%= link_to "Agronomia", site_search_subject_path(6, "Agronomia"), style:"color:Black" %></li>
+                    <li><%= link_to "Álgebra", site_search_subject_path(7, "Álgebra"), style:"color:Black" %></li>
+                    <li><%= link_to "Algoritmos e Estrutura de Dados", site_search_subject_path(8, "Algoritmos e Estrutura de Dados"), style:"color:Black" %></li>
+                    <li><%= link_to "Análise de Balanços", site_search_subject_path(9, "Análise de Balanços"), style:"color:Black" %></li>
+                  </ul>             
+                </li>
+                 
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%= link_to users_backoffice_welcome_index_path do  %>
+                        <i class= "fa fa-user fa-fw"></i> Perfil
+                      <% end %>
+                    </li>   
+                    <li role="sepatator" class="divider"></li>
+                    <li>
+                      <%= link_to destroy_user_session_path , method: :delete do %>
+                        <i class= "fa fa-sign-out fa-fw"></i> Sair
+                      <% end %>
+                    </li>           
+                  </ul>             
+                </li>
+
+                
+
+              <% end %>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      
+      <%= yield %>
+
+    </div> <!-- /container -->
+
+    <%= javascript_include_tag 'application'%>
+    <%= javascript_include_tag 'site'%>
+
+    <% if notice %>
+        <%= javascript_tag do %>
+            $.bootstrapGrowl('<%= notice %>', {       
+            type: 'success', // (null, 'info', 'danger', 'success')       
+            align: 'right', // ('left', 'right', or 'center')   
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+            });
+        <% end %>
+    <% end %>
+
+    
+    
+  </body>
+</html>
