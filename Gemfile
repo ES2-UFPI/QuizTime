@@ -43,6 +43,7 @@ gem 'faker'
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'cocoon'
+gem 'rspec-rails', '~> 4.1.0'
 
 
 group :development, :test do
