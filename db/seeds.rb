@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-x = Subject.create(description: "Matematica")
+x = Subject.create(description: "Matemática")
 
 y = Question.create(description: 'Diga a raiz de 9',subject: x)
 a1 = Answer.create(description:"3", correct: true, question_id: y.id)
