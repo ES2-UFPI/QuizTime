@@ -44,6 +44,7 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'cocoon'
 gem 'rspec-rails', '~> 4.1.0'
+gem 'pg'
 
 
 group :development, :test do
