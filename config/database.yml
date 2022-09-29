@@ -64,4 +64,3 @@ production:
   database: quiztime_production
   username: quiztime
   password: <%= ENV['quiztime_DATABASE_PASSWORD'] %>
-
