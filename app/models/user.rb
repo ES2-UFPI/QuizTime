@@ -9,7 +9,6 @@ class User < ApplicationRecord
 
   after_create :set_statistic
 
-  validates:first_name, presence:true
 
   def full_name
     [self.first_name, self.last_name].join(' ')
