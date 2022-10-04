@@ -40,9 +40,6 @@ ActiveRecord::Schema.define(version: 2022_09_30_033909) do
     t.datetime "updated_at", null: false
   end
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,7 +55,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_033909) do
   create_table "answers", force: :cascade do |t|
     t.text "description", null: false
     t.boolean "correct", default: false
-    t.bigint "question_id"
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -66,7 +63,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_033909) do
 
   create_table "questions", force: :cascade do |t|
     t.text "description", null: false
-    t.bigint "subject_id"
+    t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_questions_on_subject_id"
@@ -112,6 +109,4 @@ ActiveRecord::Schema.define(version: 2022_09_30_033909) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "answers", "questions"
-  add_foreign_key "questions", "subjects"
 end
