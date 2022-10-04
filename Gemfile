@@ -44,8 +44,8 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'cocoon'
 gem 'rspec-rails', '~> 4.1.0'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
+gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'pg'
 
 
