@@ -9,4 +9,10 @@ describe Subject do
         subject = Subject.new(description:"matematicazona")
         expect(subject).to be_valid
     end
+    
+    it "Assunto Presente" do
+        subject = Subject.new(description:"matematicazona")
+        expect(subject.description).to eq("matematicazona")
+    end
+   
 end

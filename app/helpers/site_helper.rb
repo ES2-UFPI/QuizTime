@@ -1,13 +1,12 @@
 module SiteHelper
-
-    def msg_jumbotron
+    def mensagem_inicial
         case params[:action]
         when 'index'
-            "Ultimas perguntas cadastradas"
+            "Últimas perguntas cadastradas ..."
         when 'questions'
             "Resultados para o termo \"#{params[:term]}\"..."
         when 'subject'
-            "Mostrando questoes para o assunto \"#{params[:subject]}\"..."
+            "Mostrando questões para o assunto \"#{params[:subject]}\"..."
         end
     end
 end

@@ -6,19 +6,14 @@ namespace :dev do
 
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
-    if Rails.env.development?
-      show_spinner("Apagando BD...") { %x(rails db:drop) }
-      show_spinner("Criando BD...") { %x(rails db:create) }
-      show_spinner("Migrando BD...") { %x(rails db:migrate) }
-      show_spinner("Cadastrando administrador padrao...") { %x(rails dev:add_default_admin) }
-      show_spinner("Cadastrando administradores Extras...") { %x(rails dev:add_extra_admins) }
-      show_spinner("Cadastrando usuario padrao...") { %x(rails dev:add_default_user) }
-      show_spinner("Cadastrando Assuntos padrao...") { %x(rails dev:add_subjects) }
-      show_spinner("Cadastrando Perguntas e respostas...") { %x(rails dev:add_answers_and_questions) }
-
-    else
-      puts "Você não está em ambiente de desenvolvimento!"
-    end
+    show_spinner("Apagando BD...") { %x(rails db:drop) }
+    show_spinner("Criando BD...") { %x(rails db:create) }
+    show_spinner("Migrando BD...") { %x(rails db:migrate) }
+    show_spinner("Cadastrando administrador padrao...") { %x(rails dev:add_default_admin) }
+    show_spinner("Cadastrando administradores Extras...") { %x(rails dev:add_extra_admins) }
+    show_spinner("Cadastrando usuario padrao...") { %x(rails dev:add_default_user) }
+    show_spinner("Cadastrando Assuntos padrao...") { %x(rails dev:add_subjects) }
+    show_spinner("Cadastrando Perguntas e respostas...") { %x(rails dev:add_answers_and_questions) }
   end
 
   desc "Adiciona administrador padrao"

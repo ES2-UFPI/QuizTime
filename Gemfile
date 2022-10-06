@@ -44,6 +44,10 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'cocoon'
 gem 'rspec-rails', '~> 4.1.0'
+gem 'rails-ujs', '~> 0.1.0'
+gem 'jquery-ui-rails', '~> 5.0.5'
+gem 'jquery-rails'
+gem 'pg'
 
 
 group :development, :test do
@@ -63,9 +67,9 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
