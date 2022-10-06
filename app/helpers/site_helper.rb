@@ -1,5 +1,5 @@
 module SiteHelper
-    def msg_jumbotron
+    def mensagem_inicial
         case params[:action]
         when 'index'
             "Últimas perguntas cadastradas ..."
