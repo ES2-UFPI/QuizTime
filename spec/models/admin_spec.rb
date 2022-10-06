@@ -15,4 +15,10 @@ describe Admin do
         eq("bruce@ironmaiden.com")
     end
 
+    it "é válido quando nome, email estão presentes" do 
+     admin = admin.new( email: 'bruce@ironmaiden.com',password: 123456 ) 
+      
+      expect(user).to be_valid 
+    end
+
 end 
